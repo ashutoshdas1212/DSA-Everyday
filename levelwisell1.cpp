@@ -33,7 +33,28 @@ vector<Node<int> *> constructLinkedListForEachLevel(BinaryTreeNode<int> *root)
             }
         }
 
-        
+        if(front->data!=-1)
+        {
+            if(front->left!=NULL)
+            {
+                q.push(front->left);
+            }
+            if(front->right!=NULL)
+            {
+                q.push(front->right);
+
+            }
+        }
+        else{
+            if(!q.empty())
+            {
+                BinaryTreeNode<int> *blank=new BinaryTreeNode<int>(-1);
+                q.push(blank);
+                tail->next=NULL;
+                head=NULL;
+                tail=NULL;
+            }
+        }
 
 
     }
