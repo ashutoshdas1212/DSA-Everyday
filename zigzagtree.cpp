@@ -1,5 +1,8 @@
 void zigZagOrder(BinaryTreeNode<int> *root)
+
 {
+    int cnt = 1;
+    stack<BinaryTreeNode<int> *> s;
     queue<BinaryTreeNode<int> *> q;
     q.push(root);
 
@@ -15,14 +18,33 @@ void zigZagOrder(BinaryTreeNode<int> *root)
 
         if (front->data == -1)
         {
-
+            cnt += 1;
+            if (!s.empty())
+            {
+                while (!s.empty())
+                {
+                    cout << s.top()->data << " ";
+                    s.pop();
+                }
+            }
             cout << endl;
-            BinaryTreeNode<int> *blank = new BinaryTreeNode<int>(-1);
-            q.push(blank);
+            if (!q.empty())
+            {
+                BinaryTreeNode<int> *blank = new BinaryTreeNode<int>(-1);
+                q.push(blank);
+            }
         }
         else
         {
-            cout << front->data << " ";
+            if (cnt % 2 == 1)
+            {
+                cout << front->data << " ";
+            }
+            else
+            {
+                s.push(front);
+            }
+
             if (front->left != NULL)
             {
                 q.push(front->left);
@@ -34,3 +56,5 @@ void zigZagOrder(BinaryTreeNode<int> *root)
         }
     }
 }
+
+
